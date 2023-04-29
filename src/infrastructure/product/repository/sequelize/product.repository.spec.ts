@@ -94,5 +94,13 @@ describe("Product repository test", () => {
 
     expect(products).toEqual(foundProducts);    
   });
+
+  it("should throw an error when product is not found", async () => {
+    const productRepository = new ProductRepository();
+
+    expect(async () => {
+      await productRepository.find("456ABC");
+    }).rejects.toThrow("Product not found");
+  });
   
 });
